@@ -772,302 +772,302 @@ enum FI_COLOR_PALETTE_SEARCH_MASK	 = (FI_COLOR_FIND_EQUAL_COLOR | FI_COLOR_ALPHA
 
 // Init / Error routines ----------------------------------------------------
 
-void  FreeImage_Initialise(BOOL load_local_plugins_only = FALSE);
-void  FreeImage_DeInitialise();
+void  FreeImage_Initialise(BOOL load_local_plugins_only = FALSE) @nogc nothrow;
+void  FreeImage_DeInitialise() @nogc nothrow;
 
 // Version routines ---------------------------------------------------------
 
-const(char)* FreeImage_GetVersion();
-const(char)* FreeImage_GetCopyrightMessage();
+const(char)* FreeImage_GetVersion() @nogc nothrow;
+const(char)* FreeImage_GetCopyrightMessage() @nogc nothrow;
 
 // Message output functions -------------------------------------------------
 
-alias FreeImage_OutputMessageFunction = void  function(FREE_IMAGE_FORMAT fif, const(char)* msg);
+alias FreeImage_OutputMessageFunction = void  function(FREE_IMAGE_FORMAT fif, const(char)* msg) @nogc nothrow;
 alias FreeImage_OutputMessageFunctionStdCall = DLL_CALLCONV!(void function(FREE_IMAGE_FORMAT fif, const(char)* msg));
 
-void  FreeImage_SetOutputMessageStdCall(FreeImage_OutputMessageFunctionStdCall omf);
-void  FreeImage_SetOutputMessage(FreeImage_OutputMessageFunction omf);
-void  FreeImage_OutputMessageProc(int fif, const(char)* fmt, ...);
+void  FreeImage_SetOutputMessageStdCall(FreeImage_OutputMessageFunctionStdCall omf) @nogc nothrow;
+void  FreeImage_SetOutputMessage(FreeImage_OutputMessageFunction omf) @nogc nothrow;
+void  FreeImage_OutputMessageProc(int fif, const(char)* fmt, ...) @nogc nothrow;
 
 // Allocate / Clone / Unload routines ---------------------------------------
 
-FIBITMAP * FreeImage_Allocate(int width, int height, int bpp, uint red_mask = 0, uint green_mask = 0, uint blue_mask = 0);
-FIBITMAP * FreeImage_AllocateT(FREE_IMAGE_TYPE type, int width, int height, int bpp = 8, uint red_mask = 0, uint green_mask = 0, uint blue_mask = 0);
-FIBITMAP *  FreeImage_Clone(FIBITMAP *dib);
-void  FreeImage_Unload(FIBITMAP *dib);
+FIBITMAP * FreeImage_Allocate(int width, int height, int bpp, uint red_mask = 0, uint green_mask = 0, uint blue_mask = 0) @nogc nothrow;
+FIBITMAP * FreeImage_AllocateT(FREE_IMAGE_TYPE type, int width, int height, int bpp = 8, uint red_mask = 0, uint green_mask = 0, uint blue_mask = 0) @nogc nothrow;
+FIBITMAP *  FreeImage_Clone(FIBITMAP *dib) @nogc nothrow;
+void  FreeImage_Unload(FIBITMAP *dib) @nogc nothrow;
 
 // Header loading routines
-BOOL  FreeImage_HasPixels(FIBITMAP *dib);
+BOOL  FreeImage_HasPixels(FIBITMAP *dib) @nogc nothrow;
 
 // Load / Save routines -----------------------------------------------------
 
-FIBITMAP * FreeImage_Load(FREE_IMAGE_FORMAT fif, const(char)* filename, int flags = 0);
-FIBITMAP * FreeImage_LoadU(FREE_IMAGE_FORMAT fif, const(wchar)* filename, int flags = 0);
-FIBITMAP * FreeImage_LoadFromHandle(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle, int flags = 0);
-BOOL  FreeImage_Save(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, const(char)* filename, int flags = 0);
-BOOL  FreeImage_SaveU(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, const(wchar)* filename, int flags = 0);
-BOOL  FreeImage_SaveToHandle(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, FreeImageIO *io, fi_handle handle, int flags = 0);
+FIBITMAP * FreeImage_Load(FREE_IMAGE_FORMAT fif, const(char)* filename, int flags = 0) @nogc nothrow;
+FIBITMAP * FreeImage_LoadU(FREE_IMAGE_FORMAT fif, const(wchar)* filename, int flags = 0) @nogc nothrow;
+FIBITMAP * FreeImage_LoadFromHandle(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle, int flags = 0) @nogc nothrow;
+BOOL  FreeImage_Save(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, const(char)* filename, int flags = 0) @nogc nothrow;
+BOOL  FreeImage_SaveU(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, const(wchar)* filename, int flags = 0) @nogc nothrow;
+BOOL  FreeImage_SaveToHandle(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, FreeImageIO *io, fi_handle handle, int flags = 0) @nogc nothrow;
 
 // Memory I/O stream routines -----------------------------------------------
 
-FIMEMORY * FreeImage_OpenMemory(BYTE *data = null, DWORD size_in_bytes = 0);
-void  FreeImage_CloseMemory(FIMEMORY *stream);
-FIBITMAP * FreeImage_LoadFromMemory(FREE_IMAGE_FORMAT fif, FIMEMORY *stream, int flags = 0);
-BOOL  FreeImage_SaveToMemory(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, FIMEMORY *stream, int flags = 0);
-long  FreeImage_TellMemory(FIMEMORY *stream);
+FIMEMORY * FreeImage_OpenMemory(BYTE *data = null, DWORD size_in_bytes = 0) @nogc nothrow;
+void  FreeImage_CloseMemory(FIMEMORY *stream) @nogc nothrow;
+FIBITMAP * FreeImage_LoadFromMemory(FREE_IMAGE_FORMAT fif, FIMEMORY *stream, int flags = 0) @nogc nothrow;
+BOOL  FreeImage_SaveToMemory(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, FIMEMORY *stream, int flags = 0) @nogc nothrow;
+long  FreeImage_TellMemory(FIMEMORY *stream) @nogc nothrow;
 BOOL  FreeImage_SeekMemory(FIMEMORY *stream, long offset, int origin);
-BOOL  FreeImage_AcquireMemory(FIMEMORY *stream, BYTE **data, DWORD *size_in_bytes);
-uint  FreeImage_ReadMemory(void *buffer, uint size, uint count, FIMEMORY *stream);
-uint  FreeImage_WriteMemory(const(void)* buffer, uint size, uint count, FIMEMORY *stream);
+BOOL  FreeImage_AcquireMemory(FIMEMORY *stream, BYTE **data, DWORD *size_in_bytes) @nogc nothrow;
+uint  FreeImage_ReadMemory(void *buffer, uint size, uint count, FIMEMORY *stream) @nogc nothrow;
+uint  FreeImage_WriteMemory(const(void)* buffer, uint size, uint count, FIMEMORY *stream) @nogc nothrow;
 
-FIMULTIBITMAP * FreeImage_LoadMultiBitmapFromMemory(FREE_IMAGE_FORMAT fif, FIMEMORY *stream, int flags = 0);
-BOOL  FreeImage_SaveMultiBitmapToMemory(FREE_IMAGE_FORMAT fif, FIMULTIBITMAP *bitmap, FIMEMORY *stream, int flags);
+FIMULTIBITMAP * FreeImage_LoadMultiBitmapFromMemory(FREE_IMAGE_FORMAT fif, FIMEMORY *stream, int flags = 0) @nogc nothrow;
+BOOL  FreeImage_SaveMultiBitmapToMemory(FREE_IMAGE_FORMAT fif, FIMULTIBITMAP *bitmap, FIMEMORY *stream, int flags) @nogc nothrow;
 
 // Plugin Interface ---------------------------------------------------------
 
-FREE_IMAGE_FORMAT  FreeImage_RegisterLocalPlugin(FI_InitProc proc_address, const(char)* format = null, const(char)* description = null, const(char)* extension = null, const(char)* regexpr = null);
-FREE_IMAGE_FORMAT  FreeImage_RegisterExternalPlugin(const(char)* path, const(char)* format = null, const(char)* description = null, const(char)* extension = null, const(char)* regexpr = null);
-int  FreeImage_GetFIFCount();
-int  FreeImage_SetPluginEnabled(FREE_IMAGE_FORMAT fif, BOOL enable);
-int  FreeImage_IsPluginEnabled(FREE_IMAGE_FORMAT fif);
-FREE_IMAGE_FORMAT  FreeImage_GetFIFFromFormat(const(char)* format);
-FREE_IMAGE_FORMAT  FreeImage_GetFIFFromMime(const(char)* mime);
-const(char)*  FreeImage_GetFormatFromFIF(FREE_IMAGE_FORMAT fif);
-const(char)*  FreeImage_GetFIFExtensionList(FREE_IMAGE_FORMAT fif);
-const(char)*  FreeImage_GetFIFDescription(FREE_IMAGE_FORMAT fif);
-const(char)*  FreeImage_GetFIFRegExpr(FREE_IMAGE_FORMAT fif);
-const(char)*  FreeImage_GetFIFMimeType(FREE_IMAGE_FORMAT fif);
-FREE_IMAGE_FORMAT  FreeImage_GetFIFFromFilename(const(char)* filename);
-FREE_IMAGE_FORMAT  FreeImage_GetFIFFromFilenameU(const(wchar)* filename);
-BOOL  FreeImage_FIFSupportsReading(FREE_IMAGE_FORMAT fif);
-BOOL  FreeImage_FIFSupportsWriting(FREE_IMAGE_FORMAT fif);
-BOOL  FreeImage_FIFSupportsExportBPP(FREE_IMAGE_FORMAT fif, int bpp);
-BOOL  FreeImage_FIFSupportsExportType(FREE_IMAGE_FORMAT fif, FREE_IMAGE_TYPE type);
-BOOL  FreeImage_FIFSupportsICCProfiles(FREE_IMAGE_FORMAT fif);
-BOOL  FreeImage_FIFSupportsNoPixels(FREE_IMAGE_FORMAT fif);
+FREE_IMAGE_FORMAT  FreeImage_RegisterLocalPlugin(FI_InitProc proc_address, const(char)* format = null, const(char)* description = null, const(char)* extension = null, const(char)* regexpr = null) @nogc nothrow;
+FREE_IMAGE_FORMAT  FreeImage_RegisterExternalPlugin(const(char)* path, const(char)* format = null, const(char)* description = null, const(char)* extension = null, const(char)* regexpr = null) @nogc nothrow;
+int  FreeImage_GetFIFCount() @nogc nothrow;
+int  FreeImage_SetPluginEnabled(FREE_IMAGE_FORMAT fif, BOOL enable) @nogc nothrow;
+int  FreeImage_IsPluginEnabled(FREE_IMAGE_FORMAT fif) @nogc nothrow;
+FREE_IMAGE_FORMAT  FreeImage_GetFIFFromFormat(const(char)* format) @nogc nothrow;
+FREE_IMAGE_FORMAT  FreeImage_GetFIFFromMime(const(char)* mime) @nogc nothrow;
+const(char)*  FreeImage_GetFormatFromFIF(FREE_IMAGE_FORMAT fif) @nogc nothrow;
+const(char)*  FreeImage_GetFIFExtensionList(FREE_IMAGE_FORMAT fif) @nogc nothrow;
+const(char)*  FreeImage_GetFIFDescription(FREE_IMAGE_FORMAT fif) @nogc nothrow;
+const(char)*  FreeImage_GetFIFRegExpr(FREE_IMAGE_FORMAT fif) @nogc nothrow;
+const(char)*  FreeImage_GetFIFMimeType(FREE_IMAGE_FORMAT fif) @nogc nothrow;
+FREE_IMAGE_FORMAT  FreeImage_GetFIFFromFilename(const(char)* filename) @nogc nothrow;
+FREE_IMAGE_FORMAT  FreeImage_GetFIFFromFilenameU(const(wchar)* filename) @nogc nothrow;
+BOOL  FreeImage_FIFSupportsReading(FREE_IMAGE_FORMAT fif) @nogc nothrow;
+BOOL  FreeImage_FIFSupportsWriting(FREE_IMAGE_FORMAT fif) @nogc nothrow;
+BOOL  FreeImage_FIFSupportsExportBPP(FREE_IMAGE_FORMAT fif, int bpp) @nogc nothrow;
+BOOL  FreeImage_FIFSupportsExportType(FREE_IMAGE_FORMAT fif, FREE_IMAGE_TYPE type) @nogc nothrow;
+BOOL  FreeImage_FIFSupportsICCProfiles(FREE_IMAGE_FORMAT fif) @nogc nothrow;
+BOOL  FreeImage_FIFSupportsNoPixels(FREE_IMAGE_FORMAT fif) @nogc nothrow;
 
 // Multipaging interface ----------------------------------------------------
 
-FIMULTIBITMAP *  FreeImage_OpenMultiBitmap(FREE_IMAGE_FORMAT fif, const(char)* filename, BOOL create_new, BOOL read_only, BOOL keep_cache_in_memory = FALSE, int flags = 0);
-FIMULTIBITMAP *  FreeImage_OpenMultiBitmapFromHandle(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle, int flags = 0);
-BOOL  FreeImage_SaveMultiBitmapToHandle(FREE_IMAGE_FORMAT fif, FIMULTIBITMAP *bitmap, FreeImageIO *io, fi_handle handle, int flags = 0);
-BOOL  FreeImage_CloseMultiBitmap(FIMULTIBITMAP *bitmap, int flags = 0);
-int  FreeImage_GetPageCount(FIMULTIBITMAP *bitmap);
-void  FreeImage_AppendPage(FIMULTIBITMAP *bitmap, FIBITMAP *data);
-void  FreeImage_InsertPage(FIMULTIBITMAP *bitmap, int page, FIBITMAP *data);
-void  FreeImage_DeletePage(FIMULTIBITMAP *bitmap, int page);
-FIBITMAP *  FreeImage_LockPage(FIMULTIBITMAP *bitmap, int page);
-void  FreeImage_UnlockPage(FIMULTIBITMAP *bitmap, FIBITMAP *data, BOOL changed);
-BOOL  FreeImage_MovePage(FIMULTIBITMAP *bitmap, int target, int source);
-BOOL  FreeImage_GetLockedPageNumbers(FIMULTIBITMAP *bitmap, int *pages, int *count);
+FIMULTIBITMAP *  FreeImage_OpenMultiBitmap(FREE_IMAGE_FORMAT fif, const(char)* filename, BOOL create_new, BOOL read_only, BOOL keep_cache_in_memory = FALSE, int flags = 0) @nogc nothrow;
+FIMULTIBITMAP *  FreeImage_OpenMultiBitmapFromHandle(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle, int flags = 0) @nogc nothrow;
+BOOL  FreeImage_SaveMultiBitmapToHandle(FREE_IMAGE_FORMAT fif, FIMULTIBITMAP *bitmap, FreeImageIO *io, fi_handle handle, int flags = 0) @nogc nothrow;
+BOOL  FreeImage_CloseMultiBitmap(FIMULTIBITMAP *bitmap, int flags = 0) @nogc nothrow;
+int  FreeImage_GetPageCount(FIMULTIBITMAP *bitmap) @nogc nothrow;
+void  FreeImage_AppendPage(FIMULTIBITMAP *bitmap, FIBITMAP *data) @nogc nothrow;
+void  FreeImage_InsertPage(FIMULTIBITMAP *bitmap, int page, FIBITMAP *data) @nogc nothrow;
+void  FreeImage_DeletePage(FIMULTIBITMAP *bitmap, int page) @nogc nothrow;
+FIBITMAP *  FreeImage_LockPage(FIMULTIBITMAP *bitmap, int page) @nogc nothrow;
+void  FreeImage_UnlockPage(FIMULTIBITMAP *bitmap, FIBITMAP *data, BOOL changed) @nogc nothrow;
+BOOL  FreeImage_MovePage(FIMULTIBITMAP *bitmap, int target, int source) @nogc nothrow;
+BOOL  FreeImage_GetLockedPageNumbers(FIMULTIBITMAP *bitmap, int *pages, int *count) @nogc nothrow;
 
 // Filetype request routines ------------------------------------------------
 
-FREE_IMAGE_FORMAT  FreeImage_GetFileType(const(char)* filename, int size = 0);
-FREE_IMAGE_FORMAT  FreeImage_GetFileTypeU(const(wchar)* filename, int size = 0);
-FREE_IMAGE_FORMAT  FreeImage_GetFileTypeFromHandle(FreeImageIO *io, fi_handle handle, int size = 0);
-FREE_IMAGE_FORMAT  FreeImage_GetFileTypeFromMemory(FIMEMORY *stream, int size = 0);
+FREE_IMAGE_FORMAT  FreeImage_GetFileType(const(char)* filename, int size = 0) @nogc nothrow;
+FREE_IMAGE_FORMAT  FreeImage_GetFileTypeU(const(wchar)* filename, int size = 0) @nogc nothrow;
+FREE_IMAGE_FORMAT  FreeImage_GetFileTypeFromHandle(FreeImageIO *io, fi_handle handle, int size = 0) @nogc nothrow;
+FREE_IMAGE_FORMAT  FreeImage_GetFileTypeFromMemory(FIMEMORY *stream, int size = 0) @nogc nothrow;
 
 // Image type request routine -----------------------------------------------
 
-FREE_IMAGE_TYPE  FreeImage_GetImageType(FIBITMAP *dib);
+FREE_IMAGE_TYPE  FreeImage_GetImageType(FIBITMAP *dib) @nogc nothrow;
 
 // FreeImage helper routines ------------------------------------------------
 
-BOOL  FreeImage_IsLittleEndian();
-BOOL  FreeImage_LookupX11Color(const(char)* szColor, BYTE *nRed, BYTE *nGreen, BYTE *nBlue);
-BOOL  FreeImage_LookupSVGColor(const(char)* szColor, BYTE *nRed, BYTE *nGreen, BYTE *nBlue);
+BOOL  FreeImage_IsLittleEndian() @nogc nothrow;
+BOOL  FreeImage_LookupX11Color(const(char)* szColor, BYTE *nRed, BYTE *nGreen, BYTE *nBlue) @nogc nothrow;
+BOOL  FreeImage_LookupSVGColor(const(char)* szColor, BYTE *nRed, BYTE *nGreen, BYTE *nBlue) @nogc nothrow;
 
 // Pixel access routines ----------------------------------------------------
 
-BYTE * FreeImage_GetBits(FIBITMAP *dib);
-BYTE * FreeImage_GetScanLine(FIBITMAP *dib, int scanline);
+BYTE * FreeImage_GetBits(FIBITMAP *dib) @nogc nothrow;
+BYTE * FreeImage_GetScanLine(FIBITMAP *dib, int scanline) @nogc nothrow;
 
-BOOL  FreeImage_GetPixelIndex(FIBITMAP *dib, uint x, uint y, BYTE *value);
-BOOL  FreeImage_GetPixelColor(FIBITMAP *dib, uint x, uint y, RGBQUAD *value);
-BOOL  FreeImage_SetPixelIndex(FIBITMAP *dib, uint x, uint y, BYTE *value);
-BOOL  FreeImage_SetPixelColor(FIBITMAP *dib, uint x, uint y, RGBQUAD *value);
+BOOL  FreeImage_GetPixelIndex(FIBITMAP *dib, uint x, uint y, BYTE *value) @nogc nothrow;
+BOOL  FreeImage_GetPixelColor(FIBITMAP *dib, uint x, uint y, RGBQUAD *value) @nogc nothrow;
+BOOL  FreeImage_SetPixelIndex(FIBITMAP *dib, uint x, uint y, BYTE *value) @nogc nothrow;
+BOOL  FreeImage_SetPixelColor(FIBITMAP *dib, uint x, uint y, RGBQUAD *value) @nogc nothrow;
 
 // DIB info routines --------------------------------------------------------
 
-uint  FreeImage_GetColorsUsed(FIBITMAP *dib);
-uint  FreeImage_GetBPP(FIBITMAP *dib);
-uint  FreeImage_GetWidth(FIBITMAP *dib);
-uint  FreeImage_GetHeight(FIBITMAP *dib);
-uint  FreeImage_GetLine(FIBITMAP *dib);
-uint  FreeImage_GetPitch(FIBITMAP *dib);
-uint  FreeImage_GetDIBSize(FIBITMAP *dib);
-RGBQUAD * FreeImage_GetPalette(FIBITMAP *dib);
+uint  FreeImage_GetColorsUsed(FIBITMAP *dib) @nogc nothrow;
+uint  FreeImage_GetBPP(FIBITMAP *dib) @nogc nothrow;
+uint  FreeImage_GetWidth(FIBITMAP *dib) @nogc nothrow;
+uint  FreeImage_GetHeight(FIBITMAP *dib) @nogc nothrow;
+uint  FreeImage_GetLine(FIBITMAP *dib) @nogc nothrow;
+uint  FreeImage_GetPitch(FIBITMAP *dib) @nogc nothrow;
+uint  FreeImage_GetDIBSize(FIBITMAP *dib) @nogc nothrow;
+RGBQUAD * FreeImage_GetPalette(FIBITMAP *dib) @nogc nothrow;
 
-uint  FreeImage_GetDotsPerMeterX(FIBITMAP *dib);
-uint  FreeImage_GetDotsPerMeterY(FIBITMAP *dib);
-void  FreeImage_SetDotsPerMeterX(FIBITMAP *dib, uint res);
-void  FreeImage_SetDotsPerMeterY(FIBITMAP *dib, uint res);
+uint  FreeImage_GetDotsPerMeterX(FIBITMAP *dib) @nogc nothrow;
+uint  FreeImage_GetDotsPerMeterY(FIBITMAP *dib) @nogc nothrow;
+void  FreeImage_SetDotsPerMeterX(FIBITMAP *dib, uint res) @nogc nothrow;
+void  FreeImage_SetDotsPerMeterY(FIBITMAP *dib, uint res) @nogc nothrow;
 
-BITMAPINFOHEADER * FreeImage_GetInfoHeader(FIBITMAP *dib);
-BITMAPINFO * FreeImage_GetInfo(FIBITMAP *dib);
-FREE_IMAGE_COLOR_TYPE  FreeImage_GetColorType(FIBITMAP *dib);
+BITMAPINFOHEADER * FreeImage_GetInfoHeader(FIBITMAP *dib) @nogc nothrow;
+BITMAPINFO * FreeImage_GetInfo(FIBITMAP *dib) @nogc nothrow;
+FREE_IMAGE_COLOR_TYPE  FreeImage_GetColorType(FIBITMAP *dib) @nogc nothrow;
 
-uint  FreeImage_GetRedMask(FIBITMAP *dib);
-uint  FreeImage_GetGreenMask(FIBITMAP *dib);
-uint  FreeImage_GetBlueMask(FIBITMAP *dib);
+uint  FreeImage_GetRedMask(FIBITMAP *dib) @nogc nothrow;
+uint  FreeImage_GetGreenMask(FIBITMAP *dib) @nogc nothrow;
+uint  FreeImage_GetBlueMask(FIBITMAP *dib) @nogc nothrow;
 
-uint  FreeImage_GetTransparencyCount(FIBITMAP *dib);
-BYTE *  FreeImage_GetTransparencyTable(FIBITMAP *dib);
-void  FreeImage_SetTransparent(FIBITMAP *dib, BOOL enabled);
-void  FreeImage_SetTransparencyTable(FIBITMAP *dib, BYTE *table, int count);
-BOOL  FreeImage_IsTransparent(FIBITMAP *dib);
-void  FreeImage_SetTransparentIndex(FIBITMAP *dib, int index);
-int  FreeImage_GetTransparentIndex(FIBITMAP *dib);
+uint  FreeImage_GetTransparencyCount(FIBITMAP *dib) @nogc nothrow;
+BYTE *  FreeImage_GetTransparencyTable(FIBITMAP *dib) @nogc nothrow;
+void  FreeImage_SetTransparent(FIBITMAP *dib, BOOL enabled) @nogc nothrow;
+void  FreeImage_SetTransparencyTable(FIBITMAP *dib, BYTE *table, int count) @nogc nothrow;
+BOOL  FreeImage_IsTransparent(FIBITMAP *dib) @nogc nothrow;
+void  FreeImage_SetTransparentIndex(FIBITMAP *dib, int index) @nogc nothrow;
+int  FreeImage_GetTransparentIndex(FIBITMAP *dib) @nogc nothrow;
 
-BOOL  FreeImage_HasBackgroundColor(FIBITMAP *dib);
-BOOL  FreeImage_GetBackgroundColor(FIBITMAP *dib, RGBQUAD *bkcolor);
-BOOL  FreeImage_SetBackgroundColor(FIBITMAP *dib, RGBQUAD *bkcolor);
+BOOL  FreeImage_HasBackgroundColor(FIBITMAP *dib) @nogc nothrow;
+BOOL  FreeImage_GetBackgroundColor(FIBITMAP *dib, RGBQUAD *bkcolor) @nogc nothrow;
+BOOL  FreeImage_SetBackgroundColor(FIBITMAP *dib, RGBQUAD *bkcolor) @nogc nothrow;
 
-FIBITMAP * FreeImage_GetThumbnail(FIBITMAP *dib);
-BOOL  FreeImage_SetThumbnail(FIBITMAP *dib, FIBITMAP *thumbnail);
+FIBITMAP * FreeImage_GetThumbnail(FIBITMAP *dib) @nogc nothrow;
+BOOL  FreeImage_SetThumbnail(FIBITMAP *dib, FIBITMAP *thumbnail) @nogc nothrow;
 
 // ICC profile routines -----------------------------------------------------
 
-FIICCPROFILE * FreeImage_GetICCProfile(FIBITMAP *dib);
-FIICCPROFILE * FreeImage_CreateICCProfile(FIBITMAP *dib, void *data, long size);
-void  FreeImage_DestroyICCProfile(FIBITMAP *dib);
+FIICCPROFILE * FreeImage_GetICCProfile(FIBITMAP *dib) @nogc nothrow;
+FIICCPROFILE * FreeImage_CreateICCProfile(FIBITMAP *dib, void *data, long size) @nogc nothrow;
+void  FreeImage_DestroyICCProfile(FIBITMAP *dib) @nogc nothrow;
 
 // Line conversion routines -------------------------------------------------
 
-void  FreeImage_ConvertLine1To4(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine8To4(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine16To4_555(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine16To4_565(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine24To4(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine32To4(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine1To8(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine4To8(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine16To8_555(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine16To8_565(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine24To8(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine32To8(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine1To16_555(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine4To16_555(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine8To16_555(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine16_565_To16_555(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine24To16_555(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine32To16_555(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine1To16_565(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine4To16_565(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine8To16_565(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine16_555_To16_565(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine24To16_565(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine32To16_565(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine1To24(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine4To24(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine8To24(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine16To24_555(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine16To24_565(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine32To24(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine1To32(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine4To32(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine8To32(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette);
-void  FreeImage_ConvertLine16To32_555(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine16To32_565(BYTE *target, BYTE *source, int width_in_pixels);
-void  FreeImage_ConvertLine24To32(BYTE *target, BYTE *source, int width_in_pixels);
+void  FreeImage_ConvertLine1To4(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine8To4(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine16To4_555(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine16To4_565(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine24To4(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine32To4(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine1To8(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine4To8(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine16To8_555(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine16To8_565(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine24To8(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine32To8(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine1To16_555(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine4To16_555(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine8To16_555(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine16_565_To16_555(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine24To16_555(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine32To16_555(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine1To16_565(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine4To16_565(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine8To16_565(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine16_555_To16_565(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine24To16_565(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine32To16_565(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine1To24(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine4To24(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine8To24(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine16To24_555(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine16To24_565(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine32To24(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine1To32(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine4To32(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine8To32(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) @nogc nothrow;
+void  FreeImage_ConvertLine16To32_555(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine16To32_565(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
+void  FreeImage_ConvertLine24To32(BYTE *target, BYTE *source, int width_in_pixels) @nogc nothrow;
 
 // Smart conversion routines ------------------------------------------------
 
-FIBITMAP * FreeImage_ConvertTo4Bits(FIBITMAP *dib);
-FIBITMAP * FreeImage_ConvertTo8Bits(FIBITMAP *dib);
-FIBITMAP * FreeImage_ConvertToGreyscale(FIBITMAP *dib);
-FIBITMAP * FreeImage_ConvertTo16Bits555(FIBITMAP *dib);
-FIBITMAP * FreeImage_ConvertTo16Bits565(FIBITMAP *dib);
-FIBITMAP * FreeImage_ConvertTo24Bits(FIBITMAP *dib);
-FIBITMAP * FreeImage_ConvertTo32Bits(FIBITMAP *dib);
-FIBITMAP * FreeImage_ColorQuantize(FIBITMAP *dib, FREE_IMAGE_QUANTIZE quantize);
-FIBITMAP * FreeImage_ColorQuantizeEx(FIBITMAP *dib, FREE_IMAGE_QUANTIZE quantize = FIQ_WUQUANT, int PaletteSize = 256, int ReserveSize = 0, RGBQUAD *ReservePalette = NULL);
-FIBITMAP * FreeImage_Threshold(FIBITMAP *dib, BYTE T);
-FIBITMAP * FreeImage_Dither(FIBITMAP *dib, FREE_IMAGE_DITHER algorithm);
+FIBITMAP * FreeImage_ConvertTo4Bits(FIBITMAP *dib) @nogc nothrow;
+FIBITMAP * FreeImage_ConvertTo8Bits(FIBITMAP *dib) @nogc nothrow;
+FIBITMAP * FreeImage_ConvertToGreyscale(FIBITMAP *dib) @nogc nothrow;
+FIBITMAP * FreeImage_ConvertTo16Bits555(FIBITMAP *dib) @nogc nothrow;
+FIBITMAP * FreeImage_ConvertTo16Bits565(FIBITMAP *dib) @nogc nothrow;
+FIBITMAP * FreeImage_ConvertTo24Bits(FIBITMAP *dib) @nogc nothrow;
+FIBITMAP * FreeImage_ConvertTo32Bits(FIBITMAP *dib) @nogc nothrow;
+FIBITMAP * FreeImage_ColorQuantize(FIBITMAP *dib, FREE_IMAGE_QUANTIZE quantize) @nogc nothrow;
+FIBITMAP * FreeImage_ColorQuantizeEx(FIBITMAP *dib, FREE_IMAGE_QUANTIZE quantize = FIQ_WUQUANT, int PaletteSize = 256, int ReserveSize = 0, RGBQUAD *ReservePalette = NULL) @nogc nothrow;
+FIBITMAP * FreeImage_Threshold(FIBITMAP *dib, BYTE T) @nogc nothrow;
+FIBITMAP * FreeImage_Dither(FIBITMAP *dib, FREE_IMAGE_DITHER algorithm) @nogc nothrow;
 
-FIBITMAP * FreeImage_ConvertFromRawBits(BYTE *bits, int width, int height, int pitch, uint bpp, uint red_mask, uint green_mask, uint blue_mask, BOOL topdown = FALSE);
-void  FreeImage_ConvertToRawBits(BYTE *bits, FIBITMAP *dib, int pitch, uint bpp, uint red_mask, uint green_mask, uint blue_mask, BOOL topdown = FALSE);
+FIBITMAP * FreeImage_ConvertFromRawBits(BYTE *bits, int width, int height, int pitch, uint bpp, uint red_mask, uint green_mask, uint blue_mask, BOOL topdown = FALSE) @nogc nothrow;
+void  FreeImage_ConvertToRawBits(BYTE *bits, FIBITMAP *dib, int pitch, uint bpp, uint red_mask, uint green_mask, uint blue_mask, BOOL topdown = FALSE) @nogc nothrow;
 
-FIBITMAP * FreeImage_ConvertToFloat(FIBITMAP *dib);
-FIBITMAP * FreeImage_ConvertToRGBF(FIBITMAP *dib);
-FIBITMAP * FreeImage_ConvertToUINT16(FIBITMAP *dib);
-FIBITMAP * FreeImage_ConvertToRGB16(FIBITMAP *dib);
+FIBITMAP * FreeImage_ConvertToFloat(FIBITMAP *dib) @nogc nothrow;
+FIBITMAP * FreeImage_ConvertToRGBF(FIBITMAP *dib) @nogc nothrow;
+FIBITMAP * FreeImage_ConvertToUINT16(FIBITMAP *dib) @nogc nothrow;
+FIBITMAP * FreeImage_ConvertToRGB16(FIBITMAP *dib) @nogc nothrow;
 
-FIBITMAP * FreeImage_ConvertToStandardType(FIBITMAP *src, BOOL scale_linear = TRUE);
-FIBITMAP * FreeImage_ConvertToType(FIBITMAP *src, FREE_IMAGE_TYPE dst_type, BOOL scale_linear = TRUE);
+FIBITMAP * FreeImage_ConvertToStandardType(FIBITMAP *src, BOOL scale_linear = TRUE) @nogc nothrow;
+FIBITMAP * FreeImage_ConvertToType(FIBITMAP *src, FREE_IMAGE_TYPE dst_type, BOOL scale_linear = TRUE) @nogc nothrow;
 
 // Tone mapping operators ---------------------------------------------------
 
-FIBITMAP * FreeImage_ToneMapping(FIBITMAP *dib, FREE_IMAGE_TMO tmo, double first_param = 0, double second_param = 0);
-FIBITMAP * FreeImage_TmoDrago03(FIBITMAP *src, double gamma = 2.2, double exposure = 0);
-FIBITMAP * FreeImage_TmoReinhard05(FIBITMAP *src, double intensity = 0, double contrast = 0);
-FIBITMAP * FreeImage_TmoReinhard05Ex(FIBITMAP *src, double intensity = 0, double contrast = 0, double adaptation = 1, double color_correction = 0);
+FIBITMAP * FreeImage_ToneMapping(FIBITMAP *dib, FREE_IMAGE_TMO tmo, double first_param = 0, double second_param = 0) @nogc nothrow;
+FIBITMAP * FreeImage_TmoDrago03(FIBITMAP *src, double gamma = 2.2, double exposure = 0) @nogc nothrow;
+FIBITMAP * FreeImage_TmoReinhard05(FIBITMAP *src, double intensity = 0, double contrast = 0) @nogc nothrow;
+FIBITMAP * FreeImage_TmoReinhard05Ex(FIBITMAP *src, double intensity = 0, double contrast = 0, double adaptation = 1, double color_correction = 0) @nogc nothrow;
 
-FIBITMAP * FreeImage_TmoFattal02(FIBITMAP *src, double color_saturation = 0.5, double attenuation = 0.85);
+FIBITMAP * FreeImage_TmoFattal02(FIBITMAP *src, double color_saturation = 0.5, double attenuation = 0.85) @nogc nothrow;
 
 // ZLib interface -----------------------------------------------------------
 
-DWORD  FreeImage_ZLibCompress(BYTE *target, DWORD target_size, BYTE *source, DWORD source_size);
-DWORD  FreeImage_ZLibUncompress(BYTE *target, DWORD target_size, BYTE *source, DWORD source_size);
-DWORD  FreeImage_ZLibGZip(BYTE *target, DWORD target_size, BYTE *source, DWORD source_size);
-DWORD  FreeImage_ZLibGUnzip(BYTE *target, DWORD target_size, BYTE *source, DWORD source_size);
-DWORD  FreeImage_ZLibCRC32(DWORD crc, BYTE *source, DWORD source_size);
+DWORD  FreeImage_ZLibCompress(BYTE *target, DWORD target_size, BYTE *source, DWORD source_size) @nogc nothrow;
+DWORD  FreeImage_ZLibUncompress(BYTE *target, DWORD target_size, BYTE *source, DWORD source_size) @nogc nothrow;
+DWORD  FreeImage_ZLibGZip(BYTE *target, DWORD target_size, BYTE *source, DWORD source_size) @nogc nothrow;
+DWORD  FreeImage_ZLibGUnzip(BYTE *target, DWORD target_size, BYTE *source, DWORD source_size) @nogc nothrow;
+DWORD  FreeImage_ZLibCRC32(DWORD crc, BYTE *source, DWORD source_size) @nogc nothrow;
 
 // --------------------------------------------------------------------------
 // Metadata routines
 // --------------------------------------------------------------------------
 
 // tag creation / destruction
-FITAG * FreeImage_CreateTag();
-void  FreeImage_DeleteTag(FITAG *tag);
-FITAG * FreeImage_CloneTag(FITAG *tag);
+FITAG * FreeImage_CreateTag() @nogc nothrow;
+void  FreeImage_DeleteTag(FITAG *tag) @nogc nothrow;
+FITAG * FreeImage_CloneTag(FITAG *tag) @nogc nothrow;
 
 // tag getters and setters
-const(char)*  FreeImage_GetTagKey(FITAG *tag);
-const(char)*  FreeImage_GetTagDescription(FITAG *tag);
-WORD  FreeImage_GetTagID(FITAG *tag);
-FREE_IMAGE_MDTYPE  FreeImage_GetTagType(FITAG *tag);
-DWORD  FreeImage_GetTagCount(FITAG *tag);
-DWORD  FreeImage_GetTagLength(FITAG *tag);
-const(void)*  FreeImage_GetTagValue(FITAG *tag);
+const(char)*  FreeImage_GetTagKey(FITAG *tag) @nogc nothrow;
+const(char)*  FreeImage_GetTagDescription(FITAG *tag) @nogc nothrow;
+WORD  FreeImage_GetTagID(FITAG *tag) @nogc nothrow;
+FREE_IMAGE_MDTYPE  FreeImage_GetTagType(FITAG *tag) @nogc nothrow;
+DWORD  FreeImage_GetTagCount(FITAG *tag) @nogc nothrow;
+DWORD  FreeImage_GetTagLength(FITAG *tag) @nogc nothrow;
+const(void)*  FreeImage_GetTagValue(FITAG *tag) @nogc nothrow;
 
-BOOL  FreeImage_SetTagKey(FITAG *tag, const(char)* key);
-BOOL  FreeImage_SetTagDescription(FITAG *tag, const(char)* description);
-BOOL  FreeImage_SetTagID(FITAG *tag, WORD id);
-BOOL  FreeImage_SetTagType(FITAG *tag, FREE_IMAGE_MDTYPE type);
-BOOL  FreeImage_SetTagCount(FITAG *tag, DWORD count);
-BOOL  FreeImage_SetTagLength(FITAG *tag, DWORD length);
-BOOL  FreeImage_SetTagValue(FITAG *tag, const(void)* value);
+BOOL  FreeImage_SetTagKey(FITAG *tag, const(char)* key) @nogc nothrow;
+BOOL  FreeImage_SetTagDescription(FITAG *tag, const(char)* description) @nogc nothrow;
+BOOL  FreeImage_SetTagID(FITAG *tag, WORD id) @nogc nothrow;
+BOOL  FreeImage_SetTagType(FITAG *tag, FREE_IMAGE_MDTYPE type) @nogc nothrow;
+BOOL  FreeImage_SetTagCount(FITAG *tag, DWORD count) @nogc nothrow;
+BOOL  FreeImage_SetTagLength(FITAG *tag, DWORD length) @nogc nothrow;
+BOOL  FreeImage_SetTagValue(FITAG *tag, const(void)* value) @nogc nothrow;
 
 // iterator
-FIMETADATA * FreeImage_FindFirstMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, FITAG **tag);
-BOOL  FreeImage_FindNextMetadata(FIMETADATA *mdhandle, FITAG **tag);
-void  FreeImage_FindCloseMetadata(FIMETADATA *mdhandle);
+FIMETADATA * FreeImage_FindFirstMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, FITAG **tag) @nogc nothrow;
+BOOL  FreeImage_FindNextMetadata(FIMETADATA *mdhandle, FITAG **tag) @nogc nothrow;
+void  FreeImage_FindCloseMetadata(FIMETADATA *mdhandle) @nogc nothrow;
 
 // metadata setter and getter
-BOOL  FreeImage_SetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const(char)* key, FITAG *tag);
-BOOL  FreeImage_GetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const(char)* key, FITAG **tag);
+BOOL  FreeImage_SetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const(char)* key, FITAG *tag) @nogc nothrow;
+BOOL  FreeImage_GetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const(char)* key, FITAG **tag) @nogc nothrow;
 
 // helpers
-uint  FreeImage_GetMetadataCount(FREE_IMAGE_MDMODEL model, FIBITMAP *dib);
-BOOL  FreeImage_CloneMetadata(FIBITMAP *dst, FIBITMAP *src);
+uint  FreeImage_GetMetadataCount(FREE_IMAGE_MDMODEL model, FIBITMAP *dib) @nogc nothrow;
+BOOL  FreeImage_CloneMetadata(FIBITMAP *dst, FIBITMAP *src) @nogc nothrow;
 
 // tag to C string conversion
-const(char)* FreeImage_TagToString(FREE_IMAGE_MDMODEL model, FITAG *tag, char *Make = NULL);
+const(char)* FreeImage_TagToString(FREE_IMAGE_MDMODEL model, FITAG *tag, char *Make = NULL) @nogc nothrow;
 
 // --------------------------------------------------------------------------
 // JPEG lossless transformation routines
 // --------------------------------------------------------------------------
 
-BOOL  FreeImage_JPEGTransform(const(char)* src_file, const(char)* dst_file, FREE_IMAGE_JPEG_OPERATION operation, BOOL perfect = TRUE);
-BOOL  FreeImage_JPEGTransformU(const(wchar)* src_file, const(wchar)* dst_file, FREE_IMAGE_JPEG_OPERATION operation, BOOL perfect = TRUE);
-BOOL  FreeImage_JPEGCrop(const(char)* src_file, const(char)* dst_file, int left, int top, int right, int bottom);
-BOOL  FreeImage_JPEGCropU(const(wchar)* src_file, const(wchar)* dst_file, int left, int top, int right, int bottom);
-BOOL  FreeImage_JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* dst_io, fi_handle dst_handle, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect = TRUE);
-BOOL  FreeImage_JPEGTransformCombined(const(char)* src_file, const(char)* dst_file, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect = TRUE);
-BOOL  FreeImage_JPEGTransformCombinedU(const(wchar)* src_file, const(wchar)* dst_file, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect = TRUE);
-BOOL  FreeImage_JPEGTransformCombinedFromMemory(FIMEMORY* src_stream, FIMEMORY* dst_stream, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect = TRUE);
+BOOL  FreeImage_JPEGTransform(const(char)* src_file, const(char)* dst_file, FREE_IMAGE_JPEG_OPERATION operation, BOOL perfect = TRUE) @nogc nothrow;
+BOOL  FreeImage_JPEGTransformU(const(wchar)* src_file, const(wchar)* dst_file, FREE_IMAGE_JPEG_OPERATION operation, BOOL perfect = TRUE) @nogc nothrow;
+BOOL  FreeImage_JPEGCrop(const(char)* src_file, const(char)* dst_file, int left, int top, int right, int bottom) @nogc nothrow;
+BOOL  FreeImage_JPEGCropU(const(wchar)* src_file, const(wchar)* dst_file, int left, int top, int right, int bottom) @nogc nothrow;
+BOOL  FreeImage_JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* dst_io, fi_handle dst_handle, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect = TRUE) @nogc nothrow;
+BOOL  FreeImage_JPEGTransformCombined(const(char)* src_file, const(char)* dst_file, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect = TRUE) @nogc nothrow;
+BOOL  FreeImage_JPEGTransformCombinedU(const(wchar)* src_file, const(wchar)* dst_file, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect = TRUE) @nogc nothrow;
+BOOL  FreeImage_JPEGTransformCombinedFromMemory(FIMEMORY* src_stream, FIMEMORY* dst_stream, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect = TRUE) @nogc nothrow;
 
 
 // --------------------------------------------------------------------------
@@ -1076,50 +1076,50 @@ BOOL  FreeImage_JPEGTransformCombinedFromMemory(FIMEMORY* src_stream, FIMEMORY* 
 
 // rotation and flipping
 /// @deprecated see FreeImage_Rotate
-FIBITMAP * FreeImage_RotateClassic(FIBITMAP *dib, double angle);
-FIBITMAP * FreeImage_Rotate(FIBITMAP *dib, double angle, const(void)* bkcolor = NULL);
-FIBITMAP * FreeImage_RotateEx(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x_origin, double y_origin, BOOL use_mask);
-BOOL  FreeImage_FlipHorizontal(FIBITMAP *dib);
-BOOL  FreeImage_FlipVertical(FIBITMAP *dib);
+FIBITMAP * FreeImage_RotateClassic(FIBITMAP *dib, double angle) @nogc nothrow;
+FIBITMAP * FreeImage_Rotate(FIBITMAP *dib, double angle, const(void)* bkcolor = NULL) @nogc nothrow;
+FIBITMAP * FreeImage_RotateEx(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x_origin, double y_origin, BOOL use_mask) @nogc nothrow;
+BOOL  FreeImage_FlipHorizontal(FIBITMAP *dib) @nogc nothrow;
+BOOL  FreeImage_FlipVertical(FIBITMAP *dib) @nogc nothrow;
 
 // upsampling / downsampling
-FIBITMAP * FreeImage_Rescale(FIBITMAP *dib, int dst_width, int dst_height, FREE_IMAGE_FILTER filter = FILTER_CATMULLROM);
-FIBITMAP * FreeImage_MakeThumbnail(FIBITMAP *dib, int max_pixel_size, BOOL convert = TRUE);
+FIBITMAP * FreeImage_Rescale(FIBITMAP *dib, int dst_width, int dst_height, FREE_IMAGE_FILTER filter = FILTER_CATMULLROM) @nogc nothrow;
+FIBITMAP * FreeImage_MakeThumbnail(FIBITMAP *dib, int max_pixel_size, BOOL convert = TRUE) @nogc nothrow;
 
 // color manipulation routines (point operations)
-BOOL  FreeImage_AdjustCurve(FIBITMAP *dib, BYTE *LUT, FREE_IMAGE_COLOR_CHANNEL channel);
-BOOL  FreeImage_AdjustGamma(FIBITMAP *dib, double gamma);
-BOOL  FreeImage_AdjustBrightness(FIBITMAP *dib, double percentage);
-BOOL  FreeImage_AdjustContrast(FIBITMAP *dib, double percentage);
-BOOL  FreeImage_Invert(FIBITMAP *dib);
-BOOL  FreeImage_GetHistogram(FIBITMAP *dib, DWORD *histo, FREE_IMAGE_COLOR_CHANNEL channel = FICC_BLACK);
-int  FreeImage_GetAdjustColorsLookupTable(BYTE *LUT, double brightness, double contrast, double gamma, BOOL invert);
-BOOL  FreeImage_AdjustColors(FIBITMAP *dib, double brightness, double contrast, double gamma, BOOL invert = FALSE);
-uint  FreeImage_ApplyColorMapping(FIBITMAP *dib, RGBQUAD *srccolors, RGBQUAD *dstcolors, uint count, BOOL ignore_alpha, BOOL swap);
-uint  FreeImage_SwapColors(FIBITMAP *dib, RGBQUAD *color_a, RGBQUAD *color_b, BOOL ignore_alpha);
-uint  FreeImage_ApplyPaletteIndexMapping(FIBITMAP *dib, BYTE *srcindices,	BYTE *dstindices, uint count, BOOL swap);
-uint  FreeImage_SwapPaletteIndices(FIBITMAP *dib, BYTE *index_a, BYTE *index_b);
+BOOL  FreeImage_AdjustCurve(FIBITMAP *dib, BYTE *LUT, FREE_IMAGE_COLOR_CHANNEL channel) @nogc nothrow;
+BOOL  FreeImage_AdjustGamma(FIBITMAP *dib, double gamma) @nogc nothrow;
+BOOL  FreeImage_AdjustBrightness(FIBITMAP *dib, double percentage) @nogc nothrow;
+BOOL  FreeImage_AdjustContrast(FIBITMAP *dib, double percentage) @nogc nothrow;
+BOOL  FreeImage_Invert(FIBITMAP *dib) @nogc nothrow;
+BOOL  FreeImage_GetHistogram(FIBITMAP *dib, DWORD *histo, FREE_IMAGE_COLOR_CHANNEL channel = FICC_BLACK) @nogc nothrow;
+int  FreeImage_GetAdjustColorsLookupTable(BYTE *LUT, double brightness, double contrast, double gamma, BOOL invert) @nogc nothrow;
+BOOL  FreeImage_AdjustColors(FIBITMAP *dib, double brightness, double contrast, double gamma, BOOL invert = FALSE) @nogc nothrow;
+uint  FreeImage_ApplyColorMapping(FIBITMAP *dib, RGBQUAD *srccolors, RGBQUAD *dstcolors, uint count, BOOL ignore_alpha, BOOL swap) @nogc nothrow;
+uint  FreeImage_SwapColors(FIBITMAP *dib, RGBQUAD *color_a, RGBQUAD *color_b, BOOL ignore_alpha) @nogc nothrow;
+uint  FreeImage_ApplyPaletteIndexMapping(FIBITMAP *dib, BYTE *srcindices,	BYTE *dstindices, uint count, BOOL swap) @nogc nothrow;
+uint  FreeImage_SwapPaletteIndices(FIBITMAP *dib, BYTE *index_a, BYTE *index_b) @nogc nothrow;
 
 // channel processing routines
-FIBITMAP * FreeImage_GetChannel(FIBITMAP *dib, FREE_IMAGE_COLOR_CHANNEL channel);
-BOOL  FreeImage_SetChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel);
-FIBITMAP * FreeImage_GetComplexChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel);
-BOOL  FreeImage_SetComplexChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel);
+FIBITMAP * FreeImage_GetChannel(FIBITMAP *dib, FREE_IMAGE_COLOR_CHANNEL channel) @nogc nothrow;
+BOOL  FreeImage_SetChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) @nogc nothrow;
+FIBITMAP * FreeImage_GetComplexChannel(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) @nogc nothrow;
+BOOL  FreeImage_SetComplexChannel(FIBITMAP *dst, FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) @nogc nothrow;
 
 // copy / paste / composite routines
-FIBITMAP * FreeImage_Copy(FIBITMAP *dib, int left, int top, int right, int bottom);
-BOOL  FreeImage_Paste(FIBITMAP *dst, FIBITMAP *src, int left, int top, int alpha);
-FIBITMAP * FreeImage_Composite(FIBITMAP *fg, BOOL useFileBkg = FALSE, RGBQUAD *appBkColor = NULL, FIBITMAP *bg = NULL);
-BOOL  FreeImage_PreMultiplyWithAlpha(FIBITMAP *dib);
+FIBITMAP * FreeImage_Copy(FIBITMAP *dib, int left, int top, int right, int bottom) @nogc nothrow;
+BOOL  FreeImage_Paste(FIBITMAP *dst, FIBITMAP *src, int left, int top, int alpha) @nogc nothrow;
+FIBITMAP * FreeImage_Composite(FIBITMAP *fg, BOOL useFileBkg = FALSE, RGBQUAD *appBkColor = NULL, FIBITMAP *bg = NULL) @nogc nothrow;
+BOOL  FreeImage_PreMultiplyWithAlpha(FIBITMAP *dib) @nogc nothrow;
 
 // background filling routines
-BOOL  FreeImage_FillBackground(FIBITMAP *dib, const(void)* color, int options = 0);
-FIBITMAP * FreeImage_EnlargeCanvas(FIBITMAP *src, int left, int top, int right, int bottom, const(void)* color, int options = 0);
-FIBITMAP * FreeImage_AllocateEx(int width, int height, int bpp, const(RGBQUAD)* color, int options = 0, const(RGBQUAD)* palette = NULL, uint red_mask = 0, uint green_mask = 0, uint blue_mask = 0);
-FIBITMAP * FreeImage_AllocateExT(FREE_IMAGE_TYPE type, int width, int height, int bpp, const(void)* color, int options = 0, const(RGBQUAD)* palette = NULL, uint red_mask = 0, uint green_mask = 0, uint blue_mask = 0);
+BOOL  FreeImage_FillBackground(FIBITMAP *dib, const(void)* color, int options = 0) @nogc nothrow;
+FIBITMAP * FreeImage_EnlargeCanvas(FIBITMAP *src, int left, int top, int right, int bottom, const(void)* color, int options = 0) @nogc nothrow;
+FIBITMAP * FreeImage_AllocateEx(int width, int height, int bpp, const(RGBQUAD)* color, int options = 0, const(RGBQUAD)* palette = NULL, uint red_mask = 0, uint green_mask = 0, uint blue_mask = 0) @nogc nothrow;
+FIBITMAP * FreeImage_AllocateExT(FREE_IMAGE_TYPE type, int width, int height, int bpp, const(void)* color, int options = 0, const(RGBQUAD)* palette = NULL, uint red_mask = 0, uint green_mask = 0, uint blue_mask = 0) @nogc nothrow;
 
 // miscellaneous algorithms
-FIBITMAP * FreeImage_MultigridPoissonSolver(FIBITMAP *Laplacian, int ncycle = 3);
+FIBITMAP * FreeImage_MultigridPoissonSolver(FIBITMAP *Laplacian, int ncycle = 3) @nogc nothrow;
 
 // restore the borland-specific enum size option
 // #if defined(__BORLANDC__)
